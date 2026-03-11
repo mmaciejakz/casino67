@@ -342,6 +342,10 @@ include 'connect.php';
     $show_header = true;
     include 'header.php'; 
     ?>
+    
+    <section class="hero">
+
+    </section>
 
     
     
