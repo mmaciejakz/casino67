@@ -1,4 +1,4 @@
-// <?php
+<?php
 // // connect.php - NAPRAWIONY
 // $db_server = "localhost";
 // $db_user = "root";
@@ -18,4 +18,4 @@
 
 // // Ustawiamy strefę czasową
 // date_default_timezone_set('Europe/Warsaw');
-// ?>
+?>
