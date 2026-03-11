@@ -3,7 +3,7 @@
 $db_server = "localhost";
 $db_user = "root";
 $db_pass = "";
-$db_base = "kino67";
+$db_base = "casino67";
 
 // Tworzymy połączenie
 $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_base);
