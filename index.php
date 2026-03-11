@@ -14,8 +14,8 @@ include 'connect.php';
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
 .hero {
-    background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), 
-                url('https://github.com/mmaciejakz/casino67/blob/Adrian/images/t%C5%82o.png');
+    background:linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.7)), 
+                 url('images/tło.png');    
     background-size: cover;
     background-position: center;
     padding: 80px 20px;
@@ -348,177 +348,10 @@ include 'connect.php';
         <p>Najnowsze premiery, komfortowe sale i niezapomniane wrażenia. Zarezerwuj bilety online już teraz!</p>
         <a href="movies.php" class="btn btn-primary">Zobacz repertuar</a>
     </section>
-    <section class="movies-carousel-section">
-    <h2 class="section-title">Aktualnie w kinie</h2>
 
-    <?php
-    $sql = "SELECT f.*, k.kategoria FROM filmy f 
-            LEFT JOIN kategorie k ON f.id_kategorii = k.id_kategorii 
-            ORDER BY f.id_filmu DESC LIMIT 6";
-    $result = mysqli_query($conn, $sql);
-
-    if(mysqli_num_rows($result) > 0):
-
-        $movies = [];
-        while($row = mysqli_fetch_assoc($result)) {
-            $movies[] = $row;
-        }
-    ?>
     
-    <div class="carousel-container">
-        <div class="carousel-track" id="movieCarousel">
-            <?php
-
-            for ($i = 0; $i < 2; $i++):
-                foreach($movies as $row):
-            ?>
-                <div class="carousel-slide">
-                    <div class="movie-card">
-                        <img src="<?= htmlspecialchars($row['zdjecie']) ?>"
-                             alt="<?= htmlspecialchars($row['tytul']) ?>"
-                             class="movie-poster"
-                             onerror="this.src='https://via.placeholder.com/300x450?text=Brak+plakatu'">
-
-                        <div class="movie-info">
-                            <h3 class="movie-title"><?= htmlspecialchars($row['tytul']) ?></h3>
-
-                            <div class="movie-meta">
-                                <span><i class="fas fa-user"></i> <?= htmlspecialchars($row['autor']) ?></span>
-                                <span class="category-badge"><?= htmlspecialchars($row['kategoria']) ?></span>
-                            </div>
-
-                            <p style="color: #94a3b8; font-size: 0.9em; margin-bottom: 15px;">
-                                <?= substr($row['opis'], 0, 100) ?>...
-                            </p>
-
-                            <a href="movie.php?id=<?= $row['id_filmu'] ?>" class="btn btn-primary" style="width: 100%;">
-                                <i class="fas fa-ticket-alt"></i> Zobacz seanse
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            <?php 
-                endforeach;
-            endfor;
-            ?>
-        </div>
-
-        <div class="carousel-controls">
-            <button class="carousel-btn prev-btn" onclick="moveCarousel(1)">‹</button>
-            <button class="carousel-btn next-btn" onclick="moveCarousel(-1)">›</button>
-        </div>
-    </div>
-
-    <?php else: ?>
-        <p style="text-align:center; color:#94a3b8;">Brak filmów w repertuarze</p>
-    <?php endif; ?>
-    </section>
-       <section class="premiere-section">
-    <div class="premiere-banner">
-        <img src="https://movienews.pl/wp-content/uploads/2022/03/Szybcy-i-wsciekli-po-kolei.jpg" 
-             alt="Premiera tygodnia">
-        <div class="premiere-info">
-            <h2>Premiera tygodnia: <span>Super Film 2026</span></h2>
-            <p>Nie przegap największego hitu roku w naszym kinie!</p>
-            <div class="countdown">
-                <div><span id="days">0</span>Dni</div>
-                <div><span id="hours">0</span>Godz</div>
-                <div><span id="minutes">0</span>Min</div>
-                <div><span id="seconds">0</span>Sek</div>
-            </div>
-            <a href="movie.php?id=1" class="btn btn-primary pulsate">Kup bilet</a>
-        </div>
-    </div>
-</section> 
-    <section class="about-section">
-        <h2 class="section-title">O naszym kinie</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p style="color: #94a3b8; line-height: 1.6; margin-bottom: 20px;">
-                    Kino 67 to nowoczesne kino, które oferuje najlepsze doświadczenia filmowe. 
-                    Dysponujemy komfortowymi salami wyposażonymi w najnowocześniejsze systemy dźwięku i obrazu.
-                </p>
-                <ul style="color: #94a3b8; list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: #3b82f6; margin-right: 10px;"></i> Najnowsze premiery filmowe</li>
-                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: #3b82f6; margin-right: 10px;"></i> Komfortowe fotele</li>
-                    <li style="margin-bottom: 10px;"><i class="fas fa-check" style="color: #3b82f6; margin-right: 10px;"></i> System rezerwacji online</li>
-                    <li><i class="fas fa-check" style="color: #3b82f6; margin-right: 10px;"></i> Bar z przekąskami i napojami</li>
-                </ul>
-            </div>
-            <div class="about-image">
-                <img src="https://img.freepik.com/free-photo/3d-cinema-theatre-room-with-seating_23-2151005451.jpg" 
-                     alt="Nasze kino">
-            </div>
-        </div>
-    </section>
     
     <?php include 'footer.php'; ?>
-<script>
-let currentPosition = 0;
-let slideWidth = 320;
-let autoScrollInterval;
-const carouselTrack = document.getElementById('movieCarousel');
-
-function moveCarousel(direction) {
-    stopAutoScroll();
-
-    const maxPosition = -slideWidth * (carouselTrack.children.length / 2);
-    currentPosition += direction * slideWidth;
-
-    if (currentPosition > 0) {
-        currentPosition = maxPosition;
-    }
-
-    if (currentPosition < maxPosition) {
-        currentPosition = 0;
-    }
-
-    carouselTrack.style.transform = `translateX(${currentPosition}px)`;
-    setTimeout(startAutoScroll, 5000);
-}
-
-function startAutoScroll() {
-    if (autoScrollInterval) clearInterval(autoScrollInterval);
-    autoScrollInterval = setInterval(() => {
-        moveCarousel(-1);
-    }, 3000);
-}
-
-function stopAutoScroll() {
-    if (autoScrollInterval) {
-        clearInterval(autoScrollInterval);
-        autoScrollInterval = null;
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    startAutoScroll();
-});
-</script>
-<script>
-const premiereDate = new Date("2026-02-20T20:00:00").getTime();
-
-const countdownInterval = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = premiereDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
-
-    if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.querySelector(".countdown").innerHTML = "Premiera już trwa!";
-    }
-}, 1000);
-</script>
-</body>
 
 </body>
 </html>
