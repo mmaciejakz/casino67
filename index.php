@@ -21,7 +21,105 @@ include 'connect.php';
     padding: 80px 20px;
     text-align: center;
 }
-        
+.hero {
+    background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.7)), url('images/tło.png');
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.csgo-container {
+    width: 90%;
+    max-width: 900px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.reward-strip {
+    display: flex;
+    gap: 15px;
+    position: relative;
+    left: 0;
+    transform: translateX(0);
+    transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    margin-bottom: 20px;
+}
+
+.reward-item {
+    width: 120px;
+    height: 150px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.reward-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.reward-marker {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 100%;
+    background: #FFD700;
+    z-index: 10;
+}
+
+.reward-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.85);
+    border-radius: 20px;
+    padding: 40px 60px;
+    text-align: center;
+    color: #FFD700;
+    font-size: 2em;
+    display: none;
+    z-index: 100;
+}
+
+.reward-popup img {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+}
+
+#openBoxBtn {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: #FFD700;
+    color: #000;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#openBoxBtn:hover {
+    background: #FFE066;
+}
         .hero h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
@@ -343,13 +441,132 @@ include 'connect.php';
     include 'header.php'; 
     ?>
     
-    <section class="hero">
+<section class="hero">
+    <div class="csgo-container">
+        <div class="reward-strip" id="rewardStrip"></div>
+        <div class="reward-marker"></div>
+    </div>
 
-    </section>
+    <button id="openBoxBtn">OTWÓRZ SKRZYNKĘ</button>
+
+    <div class="reward-popup" id="rewardPopup">
+        WYGRAŁEŚ:<br><span id="rewardText"></span>
+        <img id="rewardImg" src="">
+    </div>
+</section>
 
     
     
     <?php include 'footer.php'; ?>
+<script>
+const rewards = [
+    {value: 100, chance: 25},
+    {value: 200, chance: 20},
+    {value: 300, chance: 15},
+    {value: 500, chance: 10},
+    {value: 1000, chance: 8},
+    {value: 1500, chance: 7},
+    {value: 2000, chance: 5},
+    {value: 5000, chance: 4},
+    {value: 7500, chance: 3},
+    {value: 10000, chance: 3}
+];
 
+const rewardImgPath = "images/cfb65be8-d96a-45c9-8769-648a36cf9dc2-removebg-preview.png";
+
+const rewardStrip = document.getElementById("rewardStrip");
+const rewardPopup = document.getElementById("rewardPopup");
+const rewardText = document.getElementById("rewardText");
+const rewardImg = document.getElementById("rewardImg");
+const openBoxBtn = document.getElementById("openBoxBtn");
+
+// wypełniamy pasek nagród
+function populateStrip() {
+    rewardStrip.innerHTML = '';
+    const repeat = 6;
+    for (let i = 0; i < repeat; i++) {
+        rewards.forEach(r => {
+            const div = document.createElement('div');
+            div.classList.add('reward-item');
+            div.innerHTML = `<img src="${rewardImgPath}" alt="Nagroda"><br>${r.value}`;
+            rewardStrip.appendChild(div);
+        });
+    }
+}
+populateStrip();
+
+// funkcja losowania według procentów
+function getRandomReward() {
+    const rand = Math.random() * 100; // 0-100
+    let sum = 0;
+    for (let i = 0; i < rewards.length; i++) {
+        sum += rewards[i].chance;
+        if (rand <= sum) return rewards[i];
+    }
+    return rewards[rewards.length - 1]; // awaryjnie ostatnia nagroda
+}
+
+function openAnimation() {
+    rewardPopup.style.display = 'none';
+    rewardStrip.style.transition = 'none';
+    rewardStrip.style.transform = 'translateX(0)';
+
+    setTimeout(() => {
+        const items = rewardStrip.children;
+        const winReward = getRandomReward();
+        const winIndex = rewards.findIndex(r => r.value === winReward.value) + rewards.length*2;
+        const width = items[0].offsetWidth + 15;
+        const containerWidth = rewardStrip.parentElement.offsetWidth;
+        const targetX = -(winIndex * width - containerWidth/2 + width/2);
+
+        rewardStrip.style.transition = 'transform 3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        rewardStrip.style.transform = `translateX(${targetX}px)`;
+
+        setTimeout(() => {
+            rewardText.innerText = winReward.value;
+            rewardImg.src = rewardImgPath;
+            rewardPopup.style.display = 'block';
+
+            setTimeout(() => {
+                rewardPopup.style.display = 'none';
+            }, 3000);
+        }, 3000);
+    }, 50);
+}
+
+openBoxBtn.addEventListener('click', openAnimation);
+function updateButtonTimer() {
+    const openBoxBtn = document.getElementById('openBoxBtn');
+    const lastOpen = localStorage.getItem('lastBoxOpen');
+    const now = Date.now();
+
+    if(!lastOpen || now - parseInt(lastOpen) >= 24*60*60*1000) {
+        openBoxBtn.innerText = "OTWÓRZ SKRZYNKĘ";
+        openBoxBtn.disabled = false;
+    } else {
+        openBoxBtn.disabled = true;
+        const remaining = 24*60*60*1000 - (now - parseInt(lastOpen));
+        const hours = Math.floor(remaining / (1000*60*60));
+        const minutes = Math.floor((remaining % (1000*60*60)) / (1000*60));
+        const seconds = Math.floor((remaining % (1000*60)) / 1000);
+        openBoxBtn.innerText = `${hours}h ${minutes}m ${seconds}s do otwarcia`;
+    }
+}
+
+// wywołanie co sekundę, żeby licznik działał w czasie rzeczywistym
+setInterval(updateButtonTimer, 1000);
+updateButtonTimer(); // wywołanie od razu przy ładowaniu
+
+openBoxBtn.addEventListener('click', function() {
+    const lastOpen = localStorage.getItem('lastBoxOpen');
+    const now = Date.now();
+
+    if(!lastOpen || now - parseInt(lastOpen) >= 24*60*60*1000) {
+        localStorage.setItem('lastBoxOpen', now);
+        openAnimation(); // odpal animację
+        updateButtonTimer(); // od razu aktualizujemy przycisk
+    }
+});
+</script>
 </body>
 </html>
