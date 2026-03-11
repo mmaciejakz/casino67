@@ -1,9 +1,9 @@
 :root {
     --primary-dark: #0a0a0a;
     --secondary-dark: #1a1a1a;
-    --primary-blue: #1e40af;
-    --secondary-blue: #3b82f6;
-    --accent-blue: #60a5fa;
+    --primary-blue: rgba(141, 189, 53, 0.71);
+    --secondary-blue: #ef4444;
+    --accent-blue: #7e7a7a96;
     --text-light: #f8fafc;
     --text-gray: #94a3b8;
     --success: #22c55e;
