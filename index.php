@@ -280,7 +280,7 @@ include 'connect.php';
 .premiere-info h2 {
     font-size: 2.5em;
     margin-bottom: 15px;
-    color: #3b82f6;
+    color:rgb(0, 0, 0);
 }
 
 .premiere-info p {
