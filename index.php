@@ -2,7 +2,7 @@
 session_start();
 include 'connect.php';
 ?>
-
+        
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -15,7 +15,7 @@ include 'connect.php';
     <style>
 .hero {
     background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), 
-                url('images/tło.png');
+                url('https://github.com/mmaciejakz/casino67/blob/Adrian/images/t%C5%82o.png');
     background-size: cover;
     background-position: center;
     padding: 80px 20px;
