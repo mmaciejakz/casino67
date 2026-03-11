@@ -42,7 +42,7 @@ include 'connect.php';
         }
         
         .section-title {
-            color: #3b82f6;
+            color:rgb(0, 0, 0);
             margin-bottom: 30px;
             text-align: center;
         }
@@ -100,7 +100,7 @@ include 'connect.php';
         
         .category-badge {
             display: inline-block;
-            background: #3b82f6;
+            background:rgb(0, 0, 0);
             color: white;
             padding: 3px 8px;
             border-radius: 10px;
