@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kino 67</title>
+    <title>Casino 67</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -24,7 +24,7 @@
 <header>
     <div class="container">
         <nav>
-            <a href="index.php" class="logo">KINO<span>67</span></a>
+            <a href="index.php" class="logo">CASINO<span>67</span></a>
             <ul class="nav-links">
                 <li><a href="index.php"><i class="fas fa-home"></i> Strona główna</a></li>
                 <li><a href="movies.php"><i class="fas fa-film"></i> Repertuar</a></li>
