@@ -4,11 +4,11 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>Kino 67</h3>
-                <p><i class="fas fa-map-marker-alt"></i> ul. Kinowa 67</p>
+                <h3>Casino 67</h3>
+                <p><i class="fas fa-map-marker-alt"></i> ul. Casyna 67</p>
                 <p>00-000 Miasto</p>
                 <p><i class="fas fa-phone"></i> tel: 123 456 789</p>
-                <p><i class="fas fa-envelope"></i> kontakt@kino67.pl</p>
+                <p><i class="fas fa-envelope"></i> kontakt@casino67.pl</p>
             </div>
             <div class="footer-section">
                 <h3>Godziny otwarcia</h3>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #333; color: var(--text-gray);">
-            <p>Kino 67</p>
+            <p>Casino 67</p>
         </div>
     </div>
 </footer>
