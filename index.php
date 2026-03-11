@@ -342,12 +342,6 @@ include 'connect.php';
     $show_header = true;
     include 'header.php'; 
     ?>
-    
-    <section class="hero">
-        <h1>Doświadcz Magii Kina</h1>
-        <p>Najnowsze premiery, komfortowe sale i niezapomniane wrażenia. Zarezerwuj bilety online już teraz!</p>
-        <a href="movies.php" class="btn btn-primary">Zobacz repertuar</a>
-    </section>
 
     
     
