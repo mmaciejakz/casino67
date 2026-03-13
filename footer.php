@@ -1,5 +1,6 @@
 <!-- footer.php - NAPRAWIONY -->
 <!-- Stopka -->
+ <link rel="stylesheet" href="style.css">
 <footer id="kontakt">
     <div class="container">
         <div class="footer-content">

@@ -1,0 +1,104 @@
+:root{
+    --primary-black: #100E09;
+    --secondary-black:#333333;
+    --primary-red: #AD2710;
+    --secondary-red:#FC3D19;
+    --primary-green: #257D05;
+    --navlink: #f8fafc;
+    --primary-yellow: #D6B700;
+    --secondary-yellow:#CCB114;
+    --przycisk: #C9C9C9;
+}
+
+
+.hero {
+    background:linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.7)), 
+                 url('images/tło.png');    
+    background-size: cover;
+    background-position: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+        
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #3b82f6;
+        }
+        
+        .hero p {
+            font-size: 1.2em;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+
+/*Przyciski*/
+
+
+
+.btn {
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}   
+
+        .auth-buttons {
+            display: flex;
+            align-items: center; 
+            gap: 1rem;
+            white-space: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-bonus{
+            background: linear-gradient(145deg, #ffd700, #ffb700);
+            color: #111;
+            border: 2px solid #ffdf33;
+            border-radius: 10px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        }
+
+        .btn-bonus:hover{
+            background: linear-gradient(145deg, #ffe55c, #ffc400);
+            box-shadow: 
+            0 0 10px rgba(255,215,0,0.7),
+            0 0 20px rgba(255,215,0,0.6),
+            0 0 30px rgba(255,215,0,0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-graj{
+            background: linear-gradient(145deg, #257D05, #175102);
+            color: #111;
+            border: 2px solid #257D05;
+            border-radius: 10px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 600;   
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(23, 102, 1, 0.5);
+        }
+
+         .btn-graj:hover{
+            background: linear-gradient(145deg, #34ac08, #2a9205);
+            box-shadow: 
+            0 0 10px rgba(23, 102, 1, 0.7),
+            0 0 20px rgba(23, 102, 1, 0.6),
+            0 0 30px rgba(23, 102, 1, 0.5);
+            transform: translateY(-2px);
+        }
