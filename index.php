@@ -80,8 +80,9 @@ include 'header.php';
                 </div>
             </div>
             <div style="flex: 1; min-width: 300px; text-align: center;">
-                <img src="https://images.unsplash.com/photo-1610366398516-46da90014d60?auto=format&fit=crop&w=600&q=80" 
-                     alt="Coins" style="width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                <img src="cfb65be8-d96a-45c9-8769-648a36cf9dc2-removebg-preview.png" alt="Coins" style="width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+
+                     
             </div>
         </div>
     </div>

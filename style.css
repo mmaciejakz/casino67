@@ -157,7 +157,7 @@ nav {
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)), 
-                url('https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?auto=format&fit=crop&w=1200&q=80');
+                url('images/tło.png');
     background-size: cover;
     background-position: center;
     padding: 8rem 0;

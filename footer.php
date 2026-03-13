@@ -19,8 +19,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> Kasynowa 67, 00-001 Warszawa</p>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 2rem; color: var(--text-gray); font-size: 0.9rem; border-top: 1px solid #333; padding-top: 1.5rem;">
-            &copy; 2026 Casino67. Wszelkie prawa zastrzeżone. Projekt strony inspirowany Cinema67.
+        <div style="text-align: center; margin-top: 2rem; color: var(--text-gray); font-size: 0.9rem; border-top: 1px solid #333; padding-top: 1.5rem;"> Casino67
         </div>
     </div>
 </footer>
