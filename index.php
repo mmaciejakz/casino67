@@ -1,357 +1,90 @@
 <?php 
 session_start();
 include 'connect.php';
+include 'header.php'; 
 ?>
-        
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casi 67 - Strona główna</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
-.hero {
-    background:linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.7)), 
-                 url('images/tło.png');    
-    background-size: cover;
-    background-position: center;
-    padding: 80px 20px;
-    text-align: center;
-}
-        
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #3b82f6;
-        }
-        
-        .hero p {
-            font-size: 1.2em;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-        
-        .movies-section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .section-title {
-            color: #3b82f6;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .movies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .movie-card .btn {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.3s ease;
-}
 
-        .movie-card:hover .btn {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .movie-card::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            pointer-events: none;
-        }
+<section class="hero">
+    <div class="container">
+        <h1>Witaj w Casino 67</h1>
+        <p>Najbardziej ekscytujące gry kasynowe w jednym miejscu. Dołącz do tysięcy graczy i wygrywaj sztywne coiny każdego dnia!</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+            <a href="games.php" class="btn btn-primary btn-large" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                <i class="fas fa-play"></i> Graj teraz
+            </a>
+            <a href="daily_case.php" class="btn btn-gold btn-large" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                <i class="fas fa-gift"></i> Odbierz bonus
+            </a>
+        </div>
+    </div>
+</section>
 
-        .movie-poster {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        
-        .movie-info {
-            padding: 15px;
-            transform: translateZ(40px);
-        }
-        
-        .movie-title {
-            color: white;
-            margin: 0 0 10px 0;
-            font-size: 1.1em;
-        }
-        
-        .movie-meta {
-            color: #94a3b8;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        
-        .category-badge {
-            display: inline-block;
-            background: #3b82f6;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 0.8em;
-            margin-right: 5px;
-        }
-        
-        .about-section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .about-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-image {
-            flex: 1;
-        }
-        
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .movies-carousel-section {
-    padding: 60px 20px;
-    background-color: #0f172a;
-}
-
-.carousel-container {
-    position: relative;  
-    overflow: hidden;
-    padding: 20px 0;
-}
-
-.carousel-controls {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between; 
-    padding: 0 10px;
-    z-index: 5;
-    pointer-events: none; 
-}
-
-.carousel-btn {
-    pointer-events: auto; 
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 1.6em;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s ease;
-    padding-bottom: 8.5px;
-}
-
-.carousel-btn:hover {
-    background:#3b82f6;
-    transform: scale(1.1);
-}
-
-
-.carousel-track {
-    display: flex;
-    gap: 20px;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-slide {
-    min-width: 280px;
-    height: 700px; 
-    perspective: 1000px; 
-}
-
-.movie-card {
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    transform-style: preserve-3d;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.movie-card:hover {
-    transform: rotateY(6deg) rotateX(4deg) scale(1.05);
-    box-shadow: 
-        0 20px 40px rgba(0,0,0,0.7),
-        0 0 20px rgba(59,130,246,0.4);
-}
-
-
-.movie-poster {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.movie-card:hover .movie-poster {
-    transform: scale(1.08);
-}
-
-.movie-info {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.movie-title {
-    min-height: 48px; 
-}
-
-.movie-meta {
-    min-height: 40px;
-}
-
-.movie-info p {
-    flex-grow: 1; 
-}
-.premiere-section {
-    position: relative;
-    margin-bottom: 60px;
-    padding-top: 60px;
-}
-
-.premiere-banner {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    max-width: 1800px;
-    margin: 0 auto;
-}
-
-.premiere-banner img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.premiere-banner:hover img {
-    transform: scale(1.05);
-}
-
-.premiere-info {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-align: center;
-    backdrop-filter: brightness(0.35);
-    padding: 30px;
-    border-radius: 15px;
-}
-
-.premiere-info h2 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-    color: #3b82f6;
-}
-
-.premiere-info p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
-.countdown {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
-.countdown div {
-    background: rgba(0,0,0,0.6);
-    padding: 10px 15px;
-    border-radius: 10px;
-}
-
-.pulsate {
-    display: inline-block;
-    padding: 12px 25px;
-    font-size: 1.2em;
-    border-radius: 50px;
-    background: #3b82f6;
-    color: #fff;
-    text-decoration: none;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 rgba(59,130,246,0.7); }
-    50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(59,130,246,0.9); }
-    100% { transform: scale(1); box-shadow: 0 0 0 rgba(59,130,246,0.7); }
-}
-
-
-
-        
-        @media (max-width: 768px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .hero h1 {
-                font-size: 2em;
-            }
-            
-            .movies-grid {
-                grid-template-columns: 1fr;
+<div class="container" style="padding: 4rem 0;">
+    <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--secondary-blue);">
+        Nasze Najlepsze Gry
+    </h2>
+    
+    <div class="games-grid">
+        <?php
+        $sql = "SELECT * FROM games LIMIT 3";
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <div class="game-card">
+                    <div class="game-image-container">
+                        <img src="<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>" class="game-image">
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title"><?php echo $row['name']; ?></h3>
+                        <p class="game-description"><?php echo $row['description']; ?></p>
+                        <a href="game.php?id=<?php echo $row['id']; ?>" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-play"></i> Graj
+                        </a>
+                    </div>
+                </div>
+                <?php
             }
         }
-    </style>
-</head>
-<body>
-    <?php 
-    $show_header = true;
-    include 'header.php'; 
-    ?>
+        ?>
+    </div>
     
-    <section class="hero">
-        <h1>Doświadcz Magii Kina</h1>
-        <p>Najnowsze premiery, komfortowe sale i niezapomniane wrażenia. Zarezerwuj bilety online już teraz!</p>
-        <a href="movies.php" class="btn btn-primary">Zobacz repertuar</a>
-    </section>
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="games.php" class="btn btn-secondary">
+            Zobacz wszystkie gry <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
 
-    
-    
-    <?php include 'footer.php'; ?>
+<section style="background: var(--secondary-dark); padding: 5rem 0; border-top: 1px solid #333; border-bottom: 1px solid #333;">
+    <div class="container">
+        <div style="display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 1.5rem;">Czym jest Sztywny Coin?</h2>
+                <p style="color: var(--text-gray); font-size: 1.1rem; margin-bottom: 1.5rem;">
+                    Sztywny Coin (SZC) to nasza unikalna wirtualna waluta. Na start otrzymujesz 1000 SZC zupełnie za darmo! Możesz ich używać we wszystkich naszych grach, a jeśli Ci braknie, zawsze możesz doładować swój portfel lub odebrać codzienną skrzynię z bonusami.
+                </p>
+                <div style="display: flex; gap: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--secondary-blue); font-weight: bold;">100%</div>
+                        <div style="color: var(--text-gray);">Bezpieczeństwa</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--secondary-blue); font-weight: bold;">24/7</div>
+                        <div style="color: var(--text-gray);">Dostępności</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--secondary-blue); font-weight: bold;">0 zł</div>
+                        <div style="color: var(--text-gray);">Opłat</div>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 1; min-width: 300px; text-align: center;">
+                <img src="https://images.unsplash.com/photo-1610366398516-46da90014d60?auto=format&fit=crop&w=600&q=80" 
+                     alt="Coins" style="width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            </div>
+        </div>
+    </div>
+</section>
 
-</body>
-</html>
+<?php include 'footer.php'; ?>
