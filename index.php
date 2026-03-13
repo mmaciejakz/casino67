@@ -87,4 +87,141 @@ include 'header.php';
     </div>
 </section>
 
+
+
+<!-- PREMIUM ANIMACJA 67 - SZYBKA PRZY KAŻDYM WEJŚCIU NA INDEX -->
+<div id="splashScreen67" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #03050a; z-index: 99999; display: flex; justify-content: center; align-items: center; flex-direction: column; pointer-events: none; opacity: 1; transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+
+    <!-- Tło z efektem głębi - tylko niebieskie akcenty -->
+    <div style="position: absolute; width: 100%; height: 100%; overflow: hidden;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(37,99,235,0.08) 0%, transparent 50%);"></div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #3b82f6, #2563eb, transparent); animation: scanTop 2s ease-in-out infinite;"></div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #2563eb, #3b82f6, transparent); animation: scanBottom 2s ease-in-out infinite;"></div>
+    </div>
+
+    <!-- Kontener główny - MNIEJSZY I SZYBSZY -->
+    <div style="position: relative; z-index: 2; text-align: center;">
+        
+        <!-- Główny napis 67 - OBA NIEBIESKIE, MNIEJSZE -->
+        <div style="display: flex; gap: 20px; transform: scale(1.2); perspective: 1000px;">
+            <!-- 6 - niebieski -->
+            <div id="sixContainer" style="position: relative; transform-style: preserve-3d;">
+                <div style="font-size: 100px; font-weight: 900; background: linear-gradient(135deg, #3b82f6, #2563eb); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(59,130,246,0.5)); transform: rotateY(5deg) rotateX(2deg); animation: floatSixFast 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+                    6
+                </div>
+                <div style="position: absolute; top: 0; left: 0; font-size: 100px; font-weight: 900; color: #3b82f6; filter: blur(10px); opacity: 0.3; transform: translateZ(-10px);">6</div>
+            </div>
+            
+            <!-- 7 - też niebieski (jaśniejszy odcień) -->
+            <div id="sevenContainer" style="position: relative; transform-style: preserve-3d;">
+                <div style="font-size: 100px; font-weight: 900; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(96,165,250,0.5)); transform: rotateY(-5deg) rotateX(2deg); animation: floatSevenFast 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.1s;">
+                    7
+                </div>
+                <div style="position: absolute; top: 0; left: 0; font-size: 100px; font-weight: 900; color: #60a5fa; filter: blur(10px); opacity: 0.3; transform: translateZ(-10px);">7</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tekst KINO 67 - pojawi się na końcu -->
+    <div id="finalText" style="position: absolute; bottom: 40%; left: 50%; transform: translateX(-50%); font-size: 20px; letter-spacing: 10px; opacity: 0; filter: blur(5px); font-weight: 200; white-space: nowrap;">
+        <span style="background: linear-gradient(135deg, #3b82f6, #60a5fa); -webkit-background-clip: text; background-clip: text; color: transparent;">CASINO 67</span>
+    </div>
+</div>
+<style>
+@keyframes floatSixFast {
+    0%, 100% {
+        transform: rotateY(5deg) rotateX(2deg) translateY(0) scale(1);
+        filter: drop-shadow(0 0 20px rgba(59,130,246,0.5));
+    }
+    25% {
+        transform: rotateY(8deg) rotateX(4deg) translateY(-15px) scale(1.05);
+        filter: drop-shadow(0 0 30px rgba(59,130,246,0.8));
+    }
+    50% {
+        transform: rotateY(2deg) rotateX(0deg) translateY(15px) scale(0.98);
+        filter: drop-shadow(0 0 10px rgba(59,130,246,0.3));
+    }
+    75% {
+        transform: rotateY(0deg) rotateX(5deg) translateY(-8px) scale(1.02);
+        filter: drop-shadow(0 0 25px rgba(59,130,246,0.6));
+    }
+}
+
+@keyframes floatSevenFast {
+    0%, 100% {
+        transform: rotateY(-5deg) rotateX(2deg) translateY(0) scale(1);
+        filter: drop-shadow(0 0 20px rgba(96,165,250,0.5));
+    }
+    25% {
+        transform: rotateY(-8deg) rotateX(4deg) translateY(15px) scale(0.98);
+        filter: drop-shadow(0 0 10px rgba(96,165,250,0.3));
+    }
+    50% {
+        transform: rotateY(-2deg) rotateX(0deg) translateY(-15px) scale(1.05);
+        filter: drop-shadow(0 0 30px rgba(96,165,250,0.8));
+    }
+    75% {
+        transform: rotateY(0deg) rotateX(5deg) translateY(8px) scale(1.02);
+        filter: drop-shadow(0 0 25px rgba(96,165,250,0.6));
+    }
+}
+
+@keyframes scanTop {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+}
+
+@keyframes scanBottom {
+    0%, 100% { transform: translateX(100%); }
+    50% { transform: translateX(-100%); }
+}
+
+@keyframes fadeInTextFast {
+    0% { opacity: 0; filter: blur(5px); transform: translateX(-50%) scale(0.9); bottom: 40%; }
+    100% { opacity: 1; filter: blur(0); transform: translateX(-50%) scale(1); bottom: 45%; }
+}
+</style>
+<script>
+// ANIMACJA - SZYBKA PRZY KAŻDYM WEJŚCIU NA INDEX
+window.addEventListener('load', function() {
+    
+    const splash = document.getElementById('splashScreen67');
+    const six = document.getElementById('sixContainer');
+    const seven = document.getElementById('sevenContainer');
+    const finalText = document.getElementById('finalText');
+    
+    // Po 0.3 sekundy zaczynamy rozdzielanie
+    setTimeout(() => {
+        // Zatrzymaj floating animation
+        if(six && six.querySelector('div')) six.querySelector('div').style.animation = 'none';
+        if(seven && seven.querySelector('div')) seven.querySelector('div').style.animation = 'none';
+        
+        // SZYBKIE rozdzielenie w przeciwne strony
+        six.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        seven.style.transition = 'all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        
+        six.style.transform = 'translateX(-100px) scale(1.3)';
+        seven.style.transform = 'translateX(100px) scale(1.3)';
+        
+        six.style.opacity = '0';
+        seven.style.opacity = '0';
+        
+        // Pokaż finalny tekst
+        finalText.style.transition = 'all 0.4s ease';
+        finalText.style.opacity = '1';
+        finalText.style.filter = 'blur(0)';
+        finalText.style.bottom = '45%';
+        
+        // Usuń splash po rozdzieleniu
+        setTimeout(() => {
+            splash.style.opacity = '0';
+            setTimeout(() => {
+                if(splash) splash.remove();
+            }, 400);
+        }, 400);
+        
+    }, 300); // SZYBKO - tylko 0.3 sekundy animacji
+});
+</script>
+
 <?php include 'footer.php'; ?>
