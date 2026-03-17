@@ -83,7 +83,7 @@
         }
 
         .btn-graj{
-            background: linear-gradient(145deg, #257D05, #175102);
+            background: linear-gradient(145deg, #3bbf0b, #175102);
             color: #111;
             border: 2px solid #257D05;
             border-radius: 10px;
@@ -95,10 +95,10 @@
         }
 
          .btn-graj:hover{
-            background: linear-gradient(145deg, #34ac08, #2a9205);
+            background: linear-gradient(145deg, #4ddb19, #2a9205);
             box-shadow: 
-            0 0 10px rgba(23, 102, 1, 0.7),
-            0 0 20px rgba(23, 102, 1, 0.6),
-            0 0 30px rgba(23, 102, 1, 0.5);
+            0 0 10px rgba(23, 102, 1, 0.9),
+            0 0 20px rgba(23, 102, 1, 0.8),
+            0 0 30px rgba(23, 102, 1, 0.7);
             transform: translateY(-2px);
         }
