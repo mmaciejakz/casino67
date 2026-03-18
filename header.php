@@ -1,3 +1,21 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include_once 'connect.php';
+
+$current_balance = 0;
+if (isset($_SESSION['user_id'])) {
+    $uid = $_SESSION['user_id'];
+    $balance_query = "SELECT balance FROM users WHERE id = '$uid'";
+    $balance_result = mysqli_query($conn, $balance_query);
+    if ($balance_result && $row = mysqli_fetch_assoc($balance_result)) {
+        $current_balance = $row['balance'];
+        $_SESSION['balance'] = $current_balance;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -7,6 +25,7 @@
     <link rel="stylesheet" href="header-style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
     <style>
     </style>
 </head>
@@ -14,7 +33,9 @@
 <header>
     <div class="container">
         <nav>
+            
             <a href="index.php" class="logo">CASINO<span>67</span></a>
+            
             <ul class="nav-links">
 
                 <li><a href="index.php"><i class="fas fa-home"></i> Strona główna</a></li>
@@ -26,12 +47,16 @@
 
                 <li><a href="#kontakt"><i class="fas fa-phone"></i> Kontakt</a></li>
             </ul>
+
             <div class="auth-buttons">
                 <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                    <span class="balance-display">
+                        <img src="sztywny.png" alt="sztywny"><?php echo number_format($current_balance, 2); ?> SZC
+                    </span>
                     <span class="user-welcome" style="display: flex; align-items: center; gap: 5px; margin-right: 10px;">
                         <i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['username']); ?>
                     </span>
-                    <a href="logout.php" class="btn btn-secondary">
+                    <a href="logout.php" class="btn btn-primary">
                         <i class="fas fa-sign-out-alt"></i> Wyloguj
                     </a>
                 <?php else: ?>

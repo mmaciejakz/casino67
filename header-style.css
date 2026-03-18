@@ -24,7 +24,7 @@
 .container{
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0;
 }
 
 header {
@@ -44,13 +44,16 @@ nav {
 } 
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-size: 2rem;
+    font-weight: bolder;
     color: var(--secondary-red);
     text-decoration: none;
+    margin-left: -150px;
 }
 
 .logo span {
+    font-family: Comic Sans MS, Comic Sans, cursive;
     color: var(--primary-red);
 }
 
@@ -85,6 +88,7 @@ nav {
     display: flex;
     gap: 1rem;
     align-items: center;
+    margin-right: -150px;
 } 
 
 .btn {
@@ -139,4 +143,17 @@ nav {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+img{
+    width: 35px;        
+    height: auto;
+}
+
+.balance-display {
+    color: #ffd700;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }

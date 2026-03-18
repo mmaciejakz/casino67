@@ -21,7 +21,7 @@ include 'connect.php';
     <section class="hero">
         <h1>Witaj w kasynie</h1>
         <p>jakis taki fajny opis sie tutaj da i bedzie git</p>
-        <div class = "auth-buttons">
+        <div class = "auth-buttons2">
         <a href="movies.php" class="btn btn-bonus">Odbierz bonus</a>
         <a href="movies.php" class="btn btn-graj">Zagraj </a>
         </div>

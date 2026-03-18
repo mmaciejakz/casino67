@@ -52,7 +52,7 @@
     justify-content: center;
 }   
 
-        .auth-buttons {
+        .auth-buttons2 {
             display: flex;
             align-items: center; 
             gap: 1rem;
@@ -102,3 +102,4 @@
             0 0 30px rgba(23, 102, 1, 0.7);
             transform: translateY(-2px);
         }
+
