@@ -380,3 +380,32 @@ footer {
         font-size: 2.5rem;
     }
 }
+
+@keyframes spinWheel {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(1440deg); }
+}
+
+#roulette-wheel {
+    transition: transform 2.5s cubic-bezier(0.2, 0.9, 0.3, 1);
+    transform: rotate(0deg);
+}
+
+.roulette-number-label {
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background: transparent;
+    border-radius: 50%;
+    z-index: 15;
+}
+
+.winner-highlight {
+    animation: winnerPulse 1s infinite;
+    z-index: 20;
+}
+
+@keyframes winnerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
