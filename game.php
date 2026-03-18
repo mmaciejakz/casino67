@@ -140,100 +140,114 @@ include 'header.php';
                 </div>
             <?php endif; ?>
 
-            <!-- ROULETTE ANIMATION -->
+            <!-- ROULETTE ANIMATION - WERSJA SVG -->
             <?php if ($game['type'] == 'roulette'): ?>
                 <div id="roulette-container" style="text-align: center;">
-                    <div style="position: relative; width: 400px; height: 400px; margin: 0 auto;">
-                        <!-- Koło ruletki -->
-                        <div id="roulette-wheel" style="width: 100%; height: 100%; border-radius: 50%; position: relative; overflow: hidden; border: 5px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);">
+                    <div style="position: relative; width: 450px; height: 450px; margin: 0 auto;">
+                        
+                        <!-- KOŁO RULETKI JAKO SVG -->
+                        <svg id="roulette-wheel" width="450" height="450" viewBox="0 0 450 450" style="transform: rotate(0deg); transition: transform 3s cubic-bezier(0.2, 0.9, 0.3, 1);">
                             
-                            <!-- Segmenty koła -->
                             <?php
-                            // Prawidłowa kolejność w ruletce europejskiej (zgodnie z kierunkiem wskazówek zegara)
+                            // Prawidłowa kolejność numerów w ruletce europejskiej
                             $numbers = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
-                            $colors = [];
+                            $reds = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36];
                             
-                            // Przypisz kolory
-                            foreach($numbers as $num) {
-                                if($num == 0) $colors[] = '#059669'; // zielony
-                                else {
-                                    $reds = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
-                                    $colors[] = in_array($num, $reds) ? '#dc2626' : '#1f2937';
-                                }
-                            }
-                            
-                            $startAngle = 0;
+                            $centerX = 225;
+                            $centerY = 225;
+                            $radius = 200;
+                            $innerRadius = 140;
                             $anglePerSegment = 360 / 37;
+                            $startAngle = 0;
                             
                             for($i = 0; $i < 37; $i++):
+                                $number = $numbers[$i];
                                 $endAngle = $startAngle + $anglePerSegment;
                                 $midAngle = $startAngle + ($anglePerSegment / 2);
-                                $radians = deg2rad($midAngle);
                                 
-                                // Współrzędne dla numeru (na zewnątrz koła)
-                                $radius = 160;
-                                $x = 200 + cos($radians) * $radius;
-                                $y = 200 + sin($radians) * $radius;
-                            ?>
+                                // Określenie koloru
+                                if($number == 0) {
+                                    $color = '#2e7d32'; // Zielony
+                                } else {
+                                    $color = in_array($number, $reds) ? '#d32f2f' : '#212121'; // Czerwony lub czarny
+                                }
+                                
+                                // Konwersja na radiany dla obliczeń
+                                $startRad = deg2rad($startAngle - 90);
+                                $endRad = deg2rad($endAngle - 90);
+                                $midRad = deg2rad($midAngle - 90);
+                                
+                                // Współrzędne punktów
+                                $x1 = $centerX + $radius * cos($startRad);
+                                $y1 = $centerY + $radius * sin($startRad);
+                                $x2 = $centerX + $radius * cos($endRad);
+                                $y2 = $centerY + $radius * sin($endRad);
+                                
+                                // Ścieżka SVG dla segmentu
+                                $largeArc = ($anglePerSegment > 180) ? 1 : 0;
+                                ?>
                                 <!-- Segment koła -->
-                                <div style="position: absolute; width: 0; height: 0; left: 200px; top: 200px; 
-                                            border-left: 200px solid transparent; 
-                                            border-right: 200px solid transparent; 
-                                            border-bottom: 200px solid <?php echo $colors[$i]; ?>;
-                                            transform: rotate(<?php echo $startAngle; ?>deg) translateY(-50%);
-                                            transform-origin: 0 0; opacity: 0.95;">
-                                </div>
+                                <path d="M <?php echo $centerX; ?>,<?php echo $centerY; ?> L <?php echo $x1; ?>,<?php echo $y1; ?> A <?php echo $radius; ?>,<?php echo $radius; ?> 0 <?php echo $largeArc; ?>,1 <?php echo $x2; ?>,<?php echo $y2; ?> Z" 
+                                    fill="<?php echo $color; ?>" 
+                                    stroke="#d4af37" 
+                                    stroke-width="1.5"
+                                    opacity="0.95" />
                                 
-                                <!-- Biała linia oddzielająca -->
-                                <div style="position: absolute; left: 200px; top: 0; width: 2px; height: 200px; 
-                                            background: rgba(255, 255, 255, 0.3); 
-                                            transform-origin: bottom; 
-                                            transform: translateX(-50%) rotate(<?php echo $startAngle; ?>deg);">
-                                </div>
+                                <!-- Numer -->
+                                <?php
+                                $textX = $centerX + ($innerRadius + 30) * cos($midRad);
+                                $textY = $centerY + ($innerRadius + 30) * sin($midRad);
+                                ?>
+                                <text x="<?php echo $textX; ?>" y="<?php echo $textY; ?>" 
+                                    fill="white" 
+                                    font-size="14" 
+                                    font-weight="bold" 
+                                    text-anchor="middle" 
+                                    dominant-baseline="middle"
+                                    transform="rotate(<?php echo $midAngle - 90; ?>, <?php echo $textX; ?>, <?php echo $textY; ?>)">
+                                    <?php echo $number; ?>
+                                </text>
                                 
                             <?php 
                                 $startAngle = $endAngle;
                             endfor; 
                             ?>
                             
-                            <!-- Numerki na kole (umieszczone na zewnątrz) -->
-                            <?php 
-                            $startAngle = 0;
-                            for($i = 0; $i < 37; $i++):
-                                $midAngle = $startAngle + ($anglePerSegment / 2);
-                                $radians = deg2rad($midAngle);
-                                $radius = 135;
-                                $x = 200 + cos($radians) * $radius - 12;
-                                $y = 200 + sin($radians) * $radius - 12;
-                            ?>
-                                <div class="roulette-number-label" data-num="<?php echo $numbers[$i]; ?>" 
-                                    style="position: absolute; left: <?php echo $x; ?>px; top: <?php echo $y; ?>px; 
-                                            width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
-                                            color: white; font-size: 16px; font-weight: bold; 
-                                            text-shadow: 1px 1px 2px black, 0 0 5px rgba(0,0,0,0.5);
-                                            z-index: 10; transform: rotate(<?php echo -$midAngle; ?>deg);">
-                                    <?php echo $numbers[$i]; ?>
-                                </div>
-                            <?php 
-                                $startAngle += $anglePerSegment;
-                            endfor; 
-                            ?>
+                            <!-- Środek koła -->
+                            <circle cx="225" cy="225" r="50" fill="#d4af37" stroke="#996515" stroke-width="3"/>
+                            <circle cx="225" cy="225" r="40" fill="#0a0a0a" stroke="#d4af37" stroke-width="2"/>
+                            <text x="225" y="235" id="roulette-display" fill="white" font-size="24" font-weight="bold" text-anchor="middle">0</text>
+                            
+                            <!-- Złote akcenty -->
+                            <circle cx="225" cy="225" r="55" fill="none" stroke="#d4af37" stroke-width="2" stroke-dasharray="5,5"/>
+                        </svg>
+                        
+                        <!-- WSKAŹNIK (stały na górze) -->
+                        <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); z-index: 50;">
+                            <div style="width: 0; height: 0; border-left: 25px solid transparent; border-right: 25px solid transparent; border-top: 50px solid #d4af37; filter: drop-shadow(0 0 15px gold);"></div>
+                            <div style="width: 12px; height: 12px; background: white; border-radius: 50%; margin: -38px auto 0; box-shadow: 0 0 20px white;"></div>
                         </div>
-                        
-                        <!-- Środek koła -->
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 20; border: 3px solid #0a0a0a; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);">
-                            <div style="width: 80px; height: 80px; background: #0a0a0a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; font-weight: bold; font-size: 2rem; border: 2px solid #d4af37;" id="roulette-display">0</div>
-                        </div>
-                        
-                        <!-- Wskaźnik (stały) -->
-                        <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 25px solid transparent; border-right: 25px solid transparent; border-top: 50px solid #d4af37; filter: drop-shadow(0 0 15px gold); z-index: 30;"></div>
-                        <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 12px; height: 12px; background: white; border-radius: 50%; z-index: 31; box-shadow: 0 0 15px white;"></div>
-                        
-                        <!-- Oświetlenie wewnętrzne -->
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; box-shadow: inset 0 0 50px rgba(0,0,0,0.8); pointer-events: none; z-index: 25;"></div>
                     </div>
-                    <p id="roulette-status" style="color: var(--text-gray); margin-top: 2rem;">Wybierz zakład i kliknij Graj</p>
+                    
+                    <p id="roulette-status" style="color: var(--text-gray); margin-top: 2rem; font-size: 1.2rem;">Wybierz zakład i kliknij Graj</p>
                 </div>
+
+                <style>
+                #roulette-wheel {
+                    transform: rotate(0deg);
+                    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+                }
+                
+                .roulette-number-highlight {
+                    animation: pulse 0.5s ease infinite;
+                }
+                
+                @keyframes pulse {
+                    0% { r: 15; opacity: 1; }
+                    50% { r: 20; opacity: 0.7; }
+                    100% { r: 15; opacity: 1; }
+                }
+                </style>
             <?php endif; ?>
 
             <!-- SLOTS ANIMATION -->
@@ -378,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 <?php endif; ?>
 
-// ROULETTE LOGIC
+// ROULETTE LOGIC - Z RESETEM DO POZYCJI STARTOWEJ
 <?php if ($game['type'] == 'roulette'): ?>
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Roulette initialized');
@@ -397,9 +411,25 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedNumber = null;
     let currentRotation = 0;
 
-    // Prawidłowa kolejność numerów w ruletce europejskiej (zgodnie z kierunkiem wskazówek zegara)
+    // Prawidłowa kolejność numerów
     const numberOrder = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
-    const segmentAngle = 360 / 37; // 9.7297 stopnia
+    const segmentAngle = 360 / 37;
+
+    // Ustaw pozycję startową - między polem 26 a 0
+    function resetToStartPosition() {
+        // Szybki reset bez animacji
+        rouletteWheel.style.transition = 'none';
+        rouletteWheel.style.transform = 'rotate(0deg)';
+        currentRotation = 0;
+        
+        // Wymuś repaint
+        void rouletteWheel.offsetWidth;
+        
+        // Przywróć transition
+        rouletteWheel.style.transition = 'transform 3s cubic-bezier(0.2, 0.9, 0.3, 1)';
+        
+        console.log('Koło zresetowane do pozycji startowej');
+    }
 
     // Obsługa prostych zakładów
     simpleBtns.forEach(btn => {
@@ -459,15 +489,10 @@ document.addEventListener('DOMContentLoaded', function() {
         playBtn.disabled = true;
         resultDiv.innerText = 'Gramy...';
         resultDiv.style.color = 'var(--text-gray)';
-        rouletteStatus.innerText = 'Losowanie...';
-        
-        // Usuń poprzednie podświetlenia
-        document.querySelectorAll('.roulette-number-label').forEach(label => {
-            label.classList.remove('winner-highlight');
-            label.style.color = 'white';
-            label.style.fontSize = '16px';
-            label.style.textShadow = '1px 1px 2px black, 0 0 5px rgba(0,0,0,0.5)';
-        });
+        rouletteStatus.innerText = 'Koło się kręci...';
+
+        // ZRESETUJ KOŁO DO POZYCJI STARTOWEJ
+        resetToStartPosition();
 
         const formData = new URLSearchParams();
         formData.append('game_id', '<?php echo $game_id; ?>');
@@ -491,57 +516,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Znajdź indeks wylosowanego numeru
-            const resultNum = parseInt(data.details.result);
-            const resultIndex = numberOrder.indexOf(resultNum);
-            
-            // Oblicz kąt dla wylosowanego numeru (środek segmentu)
-            // Wskaźnik jest na górze (90 stopni w tej orientacji)
-            const targetAngle = (resultIndex * segmentAngle) + (segmentAngle / 2);
-            
-            // Chcemy, żeby środek segmentu znalazł się pod wskaźnikiem (na górze)
-            // Wskaźnik jest na 90°, więc odejmujemy targetAngle od 90
-            const rotationToTop = 90 - targetAngle;
-            
-            // Dodajemy pełne obroty (5-8 obrotów dla efektu)
-            const fullSpins = 5 + Math.floor(Math.random() * 4);
-            const finalRotation = currentRotation + (fullSpins * 360) + rotationToTop;
-            
-            // Animacja koła
-            rouletteWheel.style.transition = 'transform 2.5s cubic-bezier(0.2, 0.9, 0.3, 1)';
-            rouletteWheel.style.transform = `rotate(${finalRotation}deg)`;
-            currentRotation = finalRotation;
-
+            // Krótkie opóźnienie, żeby reset był widoczny
             setTimeout(() => {
-                rouletteDisplay.innerText = resultNum;
+                // Znajdź indeks wylosowanego numeru
+                const resultNum = parseInt(data.details.result);
+                const resultIndex = numberOrder.indexOf(resultNum);
                 
-                // Podświetl wylosowany numer na kole
-                document.querySelectorAll('.roulette-number-label').forEach(label => {
-                    if (parseInt(label.dataset.num) === resultNum) {
-                        label.style.color = 'gold';
-                        label.style.fontSize = '20px';
-                        label.style.textShadow = '0 0 10px gold, 0 0 20px gold';
-                        label.classList.add('winner-highlight');
+                // Oblicz kąt obrotu - środek segmentu ma być pod wskaźnikiem
+                const targetAngle = (resultIndex * segmentAngle) + (segmentAngle / 2);
+                
+                // Wskaźnik jest na górze, koło kręci się zgodnie z ruchem wskazówek zegara
+                const rotationToTop = 360 - targetAngle;
+                
+                // Dodaj pełne obroty
+                const fullSpins = 5 + Math.floor(Math.random() * 5);
+                const finalRotation = currentRotation + (fullSpins * 360) + rotationToTop;
+                
+                console.log('Numer:', resultNum);
+                console.log('Target angle:', targetAngle);
+                console.log('Rotation to top:', rotationToTop);
+                console.log('Final rotation:', finalRotation);
+                
+                // Animacja
+                rouletteWheel.style.transform = `rotate(${finalRotation}deg)`;
+                currentRotation = finalRotation;
+
+                setTimeout(() => {
+                    rouletteDisplay.textContent = resultNum;
+                    
+                    if (data.win) {
+                        resultDiv.innerText = `WYGRANA! +${data.win_amount} SZC`;
+                        resultDiv.style.color = 'var(--success)';
+                        rouletteStatus.innerText = `Wynik: ${resultNum} (${data.details.color}) - WYGRANA!`;
+                    } else {
+                        resultDiv.innerText = `PRZEGRANA! -${bet} SZC`;
+                        resultDiv.style.color = 'var(--error)';
+                        rouletteStatus.innerText = `Wynik: ${resultNum} (${data.details.color}) - PRZEGRANA`;
                     }
-                });
-                
-                if (data.win) {
-                    resultDiv.innerText = `WYGRANA! +${data.win_amount} SZC`;
-                    resultDiv.style.color = 'var(--success)';
-                    rouletteStatus.innerText = `Wynik: ${resultNum} (${data.details.color}) - WYGRANA!`;
-                } else {
-                    resultDiv.innerText = `PRZEGRANA! -${bet} SZC`;
-                    resultDiv.style.color = 'var(--error)';
-                    rouletteStatus.innerText = `Wynik: ${resultNum} (${data.details.color}) - PRZEGRANA`;
-                }
-                
-                const balanceDisplay = document.querySelector('.balance-display');
-                if (balanceDisplay) {
-                    balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
-                }
-                
-                playBtn.disabled = false;
-            }, 2500);
+                    
+                    const balanceDisplay = document.querySelector('.balance-display');
+                    if (balanceDisplay) {
+                        balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
+                    }
+                    
+                    playBtn.disabled = false;
+                }, 3000);
+            }, 50); // Krótkie opóźnienie na reset
         })
         .catch(error => {
             console.error('Error:', error);
