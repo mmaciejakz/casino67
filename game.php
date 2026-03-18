@@ -86,14 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let selectedSide = null;
 
-    /* -----------------------------------------
-       RESET ANIMACJI PO KAŻDYM ZAKOŃCZENIU
-    ------------------------------------------ */
     if (coin) {
         coin.addEventListener('transitionend', () => {
             coin.style.transition = 'none';
             coin.style.transform = 'rotateY(0deg)';
-            void coin.offsetWidth; // wymuszenie reflow
+            void coin.offsetWidth; 
             coin.style.transition = 'transform 1.5s ease-out';
         });
     }
@@ -122,11 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
             gameAnim.style.display = 'none';
             coin.style.display = 'block';
 
+ 
             coin.style.transition = 'none';
             coin.style.transform = 'rotateY(0deg)';
             void coin.offsetWidth;
             coin.style.transition = 'transform 1.5s ease-out';
         }
+
 
         fetch('play_game.php', {
             method: 'POST',
@@ -141,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultDiv.innerText = '';
                 return;
             }
+
 
             if (coin) {
                 const rotations = 10;
@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     resultDiv.style.color = 'var(--error)';
                 }
                 
+
                 const balanceDisplay = document.querySelector('.balance-display');
                 if (balanceDisplay) {
                     balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
