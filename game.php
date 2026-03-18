@@ -85,6 +85,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const gameAnim = document.getElementById('game-animation');
     
     let selectedSide = null;
+
+    /* -----------------------------------------
+       RESET ANIMACJI PO KAŻDYM ZAKOŃCZENIU
+    ------------------------------------------ */
+    if (coin) {
+        coin.addEventListener('transitionend', () => {
+            coin.style.transition = 'none';
+            coin.style.transform = 'rotateY(0deg)';
+            void coin.offsetWidth; // wymuszenie reflow
+            coin.style.transition = 'transform 1.5s ease-out';
+        });
+    }
     
     sideBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -109,10 +121,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (coin) {
             gameAnim.style.display = 'none';
             coin.style.display = 'block';
+
+            coin.style.transition = 'none';
             coin.style.transform = 'rotateY(0deg)';
+            void coin.offsetWidth;
+            coin.style.transition = 'transform 1.5s ease-out';
         }
 
-        // Send play request to server
         fetch('play_game.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -127,10 +142,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Animation logic
             if (coin) {
                 const rotations = 10;
-                const finalRotation = data.result === 'heads' ? rotations * 360 : (rotations * 360) + 180;
+                const finalRotation = data.result === 'heads'
+                    ? rotations * 360
+                    : (rotations * 360) + 180;
+
                 coin.style.transform = `rotateY(${finalRotation}deg)`;
             }
 
@@ -143,7 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     resultDiv.style.color = 'var(--error)';
                 }
                 
-                // Update balance in header
                 const balanceDisplay = document.querySelector('.balance-display');
                 if (balanceDisplay) {
                     balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
@@ -155,5 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
 
 <?php include 'footer.php'; ?>
