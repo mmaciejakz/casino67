@@ -3,7 +3,7 @@ session_start();
 include 'connect.php';
 include 'header.php'; 
 ?>
-
+<link rel="stylesheet" href="style.css">
 <section class="hero">
     <div class="container">
         <h1>Witaj w Casino 67</h1>

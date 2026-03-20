@@ -32,14 +32,6 @@ body {
     padding: 0 20px;
 }
 
-header {
-    background-color: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 2px solid var(--primary-blue);
-}
 
 nav {
     display: flex;
