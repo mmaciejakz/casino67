@@ -377,10 +377,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const balanceDisplay = document.querySelector('.balance-display');
                 if (balanceDisplay) {
-                    balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
+                    balanceDisplay.innerHTML = `<img src="sztywny.png" alt="sztywny"> ${data.new_balance} SZC`;
                 }
                 
                 playBtn.disabled = false;
+
             }, 2000);
         })
         .catch(error => {
@@ -556,7 +557,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     const balanceDisplay = document.querySelector('.balance-display');
                     if (balanceDisplay) {
-                        balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
+                        balanceDisplay.innerHTML = `<img src="sztywny.png" alt="sztywny"> ${data.new_balance} SZC`;
                     }
                     
                     playBtn.disabled = false;
@@ -662,10 +663,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const balanceDisplay = document.querySelector('.balance-display');
                 if (balanceDisplay) {
-                    balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
+                    balanceDisplay.innerHTML = `<img src="sztywny.png" alt="sztywny"> ${data.new_balance} SZC`;
                 }
                 
                 playBtn.disabled = false;
+
             }, 1500);
         })
         .catch(error => {

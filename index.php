@@ -9,10 +9,10 @@ include 'header.php';
         <h1>Witaj w Casino 67</h1>
         <p>Najbardziej ekscytujące gry kasynowe w jednym miejscu. Dołącz do tysięcy graczy i wygrywaj sztywne coiny każdego dnia!</p>
         <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-            <a href="games.php" class="btn btn-primary btn-large" style="padding: 1rem 2rem; font-size: 1.1rem;">
+            <a href="games.php" class="btn2 btn-graj2">
                 <i class="fas fa-play"></i> Graj teraz
             </a>
-            <a href="daily_case.php" class="btn btn-gold btn-large" style="padding: 1rem 2rem; font-size: 1.1rem;">
+            <a href="daily_case.php" class="btn2 btn-bonus2">
                 <i class="fas fa-gift"></i> Odbierz bonus
             </a>
         </div>
@@ -20,7 +20,7 @@ include 'header.php';
 </section>
 
 <div class="container" style="padding: 4rem 0;">
-    <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--secondary-blue);">
+    <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #257D05;">
         Nasze Najlepsze Gry
     </h2>
     
@@ -60,7 +60,7 @@ include 'header.php';
     <div class="container">
         <div style="display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
             <div style="flex: 1; min-width: 300px;">
-                <h2 style="color: var(--gold); font-size: 2.5rem; margin-bottom: 1.5rem;">Czym jest Sztywny Coin?</h2>
+                <h2 style="color: #FC3D19; font-size: 2.5rem; margin-bottom: 1.5rem;">Czym jest Sztywny Coin?</h2>
                 <p style="color: var(--text-gray); font-size: 1.1rem; margin-bottom: 1.5rem;">
                     Sztywny Coin (SZC) to nasza unikalna wirtualna waluta. Na start otrzymujesz 1000 SZC zupełnie za darmo! Możesz ich używać we wszystkich naszych grach, a jeśli Ci braknie, zawsze możesz doładować swój portfel lub odebrać codzienną skrzynię z bonusami.
                 </p>
@@ -80,7 +80,7 @@ include 'header.php';
                 </div>
             </div>
             <div style="flex: 1; min-width: 300px; text-align: center;">
-                <img src="cfb65be8-d96a-45c9-8769-648a36cf9dc2-removebg-preview.png" alt="Coins" style="width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+                <img src="sztywny.png" alt="Coins" style="width: 100%; max-width: 500px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
 
                      
             </div>
@@ -95,9 +95,9 @@ include 'header.php';
 
     <!-- Tło z efektem głębi - tylko niebieskie akcenty -->
     <div style="position: absolute; width: 100%; height: 100%; overflow: hidden;">
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(37,99,235,0.08) 0%, transparent 50%);"></div>
-        <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #3b82f6, #2563eb, transparent); animation: scanTop 2s ease-in-out infinite;"></div>
-        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #2563eb, #3b82f6, transparent); animation: scanBottom 2s ease-in-out infinite;"></div>
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(246, 59, 59, 0.08) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(0, 0, 0, 0.08) 0%, transparent 50%);"></div>
+        <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #FC3D19, #AD2710, transparent); animation: scanTop 2s ease-in-out infinite;"></div>
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #AD2710, #FC3D19, transparent); animation: scanBottom 2s ease-in-out infinite;"></div>
     </div>
 
     <!-- Kontener główny - MNIEJSZY I SZYBSZY -->
@@ -107,63 +107,63 @@ include 'header.php';
         <div style="display: flex; gap: 20px; transform: scale(1.2); perspective: 1000px;">
             <!-- 6 - niebieski -->
             <div id="sixContainer" style="position: relative; transform-style: preserve-3d;">
-                <div style="font-size: 100px; font-weight: 900; background: linear-gradient(135deg, #3b82f6, #2563eb); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(59,130,246,0.5)); transform: rotateY(5deg) rotateX(2deg); animation: floatSixFast 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+                <div style="font-size: 100px; font-weight: 900; background: linear-gradient(135deg, #FC3D19, #AD2710); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(173, 39, 16,0.5)); transform: rotateY(5deg) rotateX(2deg); animation: floatSixFast 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
                     6
                 </div>
-                <div style="position: absolute; top: 0; left: 0; font-size: 100px; font-weight: 900; color: #3b82f6; filter: blur(10px); opacity: 0.3; transform: translateZ(-10px);">6</div>
+                <div style="position: absolute; top: 0; left: 0; font-size: 100px; font-weight: 900; color: #FC3D19; filter: blur(10px); opacity: 0.3; transform: translateZ(-10px);">6</div>
             </div>
             
             <!-- 7 - też niebieski (jaśniejszy odcień) -->
             <div id="sevenContainer" style="position: relative; transform-style: preserve-3d;">
-                <div style="font-size: 100px; font-weight: 900; background: linear-gradient(135deg, #60a5fa, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(96,165,250,0.5)); transform: rotateY(-5deg) rotateX(2deg); animation: floatSevenFast 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.1s;">
+                <div style="font-size: 100px; font-weight: 900; background: linear-gradient(135deg, #257D05, #195802); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 20px rgba(173, 39, 16,0.5)); transform: rotateY(-5deg) rotateX(2deg); animation: floatSevenFast 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.1s;">
                     7
                 </div>
-                <div style="position: absolute; top: 0; left: 0; font-size: 100px; font-weight: 900; color: #60a5fa; filter: blur(10px); opacity: 0.3; transform: translateZ(-10px);">7</div>
+                <div style="position: absolute; top: 0; left: 0; font-size: 100px; font-weight: 900; color: #257D05; filter: blur(10px); opacity: 0.3; transform: translateZ(-10px);">7</div>
             </div>
         </div>
     </div>
 
     <!-- Tekst KINO 67 - pojawi się na końcu -->
     <div id="finalText" style="position: absolute; bottom: 40%; left: 50%; transform: translateX(-50%); font-size: 20px; letter-spacing: 10px; opacity: 0; filter: blur(5px); font-weight: 200; white-space: nowrap;">
-        <span style="background: linear-gradient(135deg, #3b82f6, #60a5fa); -webkit-background-clip: text; background-clip: text; color: transparent;">CASINO 67</span>
+        <span style="background: linear-gradient(135deg, #AD2710, #FC3D19); -webkit-background-clip: text; background-clip: text; color: transparent;">CASINO <span style = "color: #257D05;">67</span></span>
     </div>
 </div>
 <style>
 @keyframes floatSixFast {
     0%, 100% {
         transform: rotateY(5deg) rotateX(2deg) translateY(0) scale(1);
-        filter: drop-shadow(0 0 20px rgba(59,130,246,0.5));
+        filter: drop-shadow(0 0 20px rgba(173, 39, 16,0.5));
     }
     25% {
         transform: rotateY(8deg) rotateX(4deg) translateY(-15px) scale(1.05);
-        filter: drop-shadow(0 0 30px rgba(59,130,246,0.8));
+        filter: drop-shadow(0 0 30px rgba(173, 39, 16,0.8));
     }
     50% {
         transform: rotateY(2deg) rotateX(0deg) translateY(15px) scale(0.98);
-        filter: drop-shadow(0 0 10px rgba(59,130,246,0.3));
+        filter: drop-shadow(0 0 10px rgba(173, 39, 16,0.3));
     }
     75% {
         transform: rotateY(0deg) rotateX(5deg) translateY(-8px) scale(1.02);
-        filter: drop-shadow(0 0 25px rgba(59,130,246,0.6));
+        filter: drop-shadow(0 0 25px rgba(173, 39, 16,0.6));
     }
 }
 
 @keyframes floatSevenFast {
     0%, 100% {
         transform: rotateY(-5deg) rotateX(2deg) translateY(0) scale(1);
-        filter: drop-shadow(0 0 20px rgba(96,165,250,0.5));
+        filter: drop-shadow(0 0 20px hsla(137, 95%, 31%, 0.5));
     }
     25% {
         transform: rotateY(-8deg) rotateX(4deg) translateY(15px) scale(0.98);
-        filter: drop-shadow(0 0 10px rgba(96,165,250,0.3));
+        filter: drop-shadow(0 0 10px hsla(137, 95%, 31%,0.3));
     }
     50% {
         transform: rotateY(-2deg) rotateX(0deg) translateY(-15px) scale(1.05);
-        filter: drop-shadow(0 0 30px rgba(96,165,250,0.8));
+        filter: drop-shadow(0 0 30px hsla(137, 95%, 31%,0.8));
     }
     75% {
         transform: rotateY(0deg) rotateX(5deg) translateY(8px) scale(1.02);
-        filter: drop-shadow(0 0 25px rgba(96,165,250,0.6));
+        filter: drop-shadow(0 0 25px hsla(137, 95%, 31%,0.6));
     }
 }
 

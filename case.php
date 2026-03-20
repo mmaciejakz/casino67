@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentBalanceSpan.innerText = currentBalance.toFixed(2);
         }
         if (balanceDisplay) {
-            balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${currentBalance.toFixed(2)} SZC`;
+            balanceDisplay.innerHTML = `<img src="sztywny.png" alt="sztywny"> ${currentBalance.toFixed(2)} SZC`;
         }
     }
     

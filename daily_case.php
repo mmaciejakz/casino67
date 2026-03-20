@@ -195,7 +195,7 @@ include 'header.php';
 </style>
 
 <div class="container" style="padding: 4rem 0;">
-    <h1 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--gold);">
+    <h1 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #FC3D19;">
         Codzienna Skrzynia Bonusowa
     </h1>
     
@@ -221,17 +221,12 @@ include 'header.php';
             <!-- Pokazuj duży timer gdy skrzynka zamknięta -->
             <div style="text-align: center; padding: 2rem;">
                 <h2 style="color: var(--gold); font-size: 2.2rem; margin-bottom: 1rem;">Skrzynia została już otwarta!</h2>
-                <button class="btn btn-secondary" disabled style="padding: 1.2rem 3rem; font-size: 1.3rem; margin-top: 1rem;">
+                <button class="btn btn-secondary" disabled style="padding: 1.2rem 3rem; font-size: 1.3rem; margin-top: 1rem; color: #FC3D19; border-color: #FC3D19;">
                     <i class="fas fa-clock"></i> Następna za: <?php echo $wait_time; ?>
                 </button>
                 <div style="margin-top: 2rem; color: var(--text-gray); font-size: 1.1rem;">
-                    <i class="fas fa-gift" style="color: var(--gold); margin-right: 0.5rem;"></i> 
+                    <i class="fas fa-gift" style="color: #FC3D19; margin-right: 0.5rem;"></i> 
                     Wróć za podany czas po kolejną skrzynkę!
-                </div>
-                <div style="margin-top: 2rem;">
-                    <i class="fas fa-star" style="color: var(--gold);"></i>
-                    <i class="fas fa-star" style="color: var(--gold); margin: 0 0.5rem;"></i>
-                    <i class="fas fa-star" style="color: var(--gold);"></i>
                 </div>
             </div>
         <?php endif; ?>
@@ -276,7 +271,7 @@ include 'header.php';
         <h2>WYGRANA!</h2>
         
         <div class="image-container">
-            <img src="cfb65be8-d96a-45c9-8769-648a36cf9dc2-removebg-preview.png">
+            <img src="sztywny.png">
             <div class="win-text">
                 <span id="modal-amount">0</span> SZC
             </div>
@@ -338,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
         div.style.border = '1px solid #333';
         div.style.borderBottom = `5px solid ${item.color}`;
         div.innerHTML = `
-            <img src="cfb65be8-d96a-45c9-8769-648a36cf9dc2-removebg-preview.png" style="width: 70px; height: 70px; margin-bottom: 0.8rem; object-fit: contain;">
+            <img src="sztywny.png" style="width: 70px; height: 70px; margin-bottom: 0.8rem; object-fit: contain;">
             <span style="font-weight: bold; font-size: 1.1rem;">${item.val} SZC</span>
         `;
         track.appendChild(div);
@@ -389,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     const balanceDisplay = document.querySelector('.balance-display');
                     if (balanceDisplay) {
-                        balanceDisplay.innerHTML = `<i class="fas fa-coins"></i> ${data.new_balance} SZC`;
+                        balanceDisplay.innerHTML = `<img src="sztywny.png" alt="sztywny"> ${data.new_balance} SZC`;
                     }
                     
                     setTimeout(() => {
