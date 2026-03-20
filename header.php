@@ -43,7 +43,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="auth-buttons">
                 <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
                     <span class="balance-display">
-                        <i class="fas fa-coins"></i> <?php echo number_format($current_balance, 2); ?> SZC
+                        <img src="cfb65be8-d96a-45c9-8769-648a36cf9dc2-removebg-preview.png" alt="SZC" style="width: 25px; height: auto; margin-right: 5px;"> <?php echo number_format($current_balance, 2); ?> SZC
                     </span>
                     <span class="user-welcome">
                         <i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['username']); ?>

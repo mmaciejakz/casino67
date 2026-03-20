@@ -17,6 +17,13 @@ if (!$game) {
     exit;
 }
 
+// ========== DODANE PRZEKIEROWANIE DLA GRY CASE ==========
+if ($game['type'] == 'case') {
+    header("Location: case.php");
+    exit;
+}
+// =======================================================
+
 include 'header.php';
 ?>
 
