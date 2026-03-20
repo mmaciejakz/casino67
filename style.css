@@ -1,9 +1,10 @@
 :root {
-    --primary-dark: #0a0a0a;
-    --secondary-dark: #1a1a1a;
-    --primary-blue: #1e40af;
-    --secondary-blue: #3b82f6;
-    --accent-blue: #60a5fa;
+    --primary-black: #100E09;
+    --secondary-black: #333333;
+    --primary-red: #AD2710;
+    --secondary-red: #FC3D19;
+    --primary-green: #257D05;
+    --navlink: #f8fafc;
     --text-light: #f8fafc;
     --text-gray: #94a3b8;
     --success: #22c55e;
@@ -20,7 +21,7 @@
 }
 
 body {
-    background-color: var(--primary-dark);
+    background-color: var(--primary-black);
     color: var(--text-light);
     min-height: 100vh;
     line-height: 1.6;
@@ -32,13 +33,14 @@ body {
     padding: 0 20px;
 }
 
+/* Header */
 header {
-    background-color: rgba(10, 10, 10, 0.95);
+    background-color: var(--primary-black);
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid var(--primary-blue);
+    border-bottom: 2px solid var(--primary-green);
 }
 
 nav {
@@ -49,30 +51,30 @@ nav {
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--secondary-blue);
+    font-size: 2rem;
+    font-weight: bolder;
+    color: var(--secondary-red);
     text-decoration: none;
     letter-spacing: 1px;
 }
 
 .logo span {
-    color: var(--accent-blue);
+    color: var(--primary-red);
 }
 
 .nav-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     list-style: none;
     align-items: center;
 }
 
 .nav-links a {
-    color: var(--text-light);
+    color: var(--navlink);
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 10px;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -80,8 +82,9 @@ nav {
 }
 
 .nav-links a:hover {
-    background-color: var(--primary-blue);
-    color: var(--text-light);
+    background-color: var(--primary-red);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(173, 39, 16, 0.3);
 }
 
 .auth-buttons {
@@ -93,7 +96,7 @@ nav {
 .user-welcome {
     color: var(--text-light);
     padding: 0.5rem 1rem;
-    background: var(--secondary-dark);
+    background: var(--secondary-black);
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -108,10 +111,11 @@ nav {
     gap: 0.3rem;
 }
 
+/* Buttons */
 .btn {
     padding: 0.6rem 1.5rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -123,24 +127,26 @@ nav {
 }
 
 .btn-primary {
-    background-color: var(--primary-blue);
+    background-color: var(--primary-green);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--secondary-blue);
+    background-color: var(--secondary-black);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+    box-shadow: 0 4px 12px rgba(37, 125, 5, 0.3);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--secondary-blue);
-    border: 2px solid var(--secondary-blue);
+    color: var(--secondary-red);
+    border: 2px solid var(--primary-red);
 }
 
 .btn-secondary:hover {
-    background-color: rgba(59, 130, 246, 0.1);
+    background-color: var(--secondary-black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(173, 39, 16, 0.3);
 }
 
 .btn-gold {
@@ -154,9 +160,15 @@ nav {
     box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
 }
 
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
 /* Hero Section */
 .hero {
-    background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)), 
+    background: linear-gradient(rgba(16, 14, 9, 0.85), rgba(16, 14, 9, 0.85)), 
                 url('images/tło.png');
     background-size: cover;
     background-position: center;
@@ -167,7 +179,7 @@ nav {
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    background: linear-gradient(90deg, var(--secondary-blue), var(--accent-blue));
+    background: linear-gradient(90deg, var(--secondary-red), var(--primary-red));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -180,29 +192,28 @@ nav {
     margin: 0 auto 2rem;
 }
 
-/* Cards Grid */
+/* Games Grid (styl jak movies-grid) */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
     padding: 3rem 0;
 }
 
 .game-card {
-    background: linear-gradient(145deg, #1e293b, #0f172a);
-    border-radius: 16px;
+    background: var(--secondary-black);
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    border: 1px solid #333;
-    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #444;
     display: flex;
     flex-direction: column;
 }
 
 .game-card:hover {
-    transform: rotateY(6deg) rotateX(4deg) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 20px rgba(59,130,246,0.4);
-    border-color: var(--primary-blue);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-green);
 }
 
 .game-image-container {
@@ -219,7 +230,7 @@ nav {
 }
 
 .game-card:hover .game-image {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .game-info {
@@ -242,7 +253,7 @@ nav {
     flex-grow: 1;
 }
 
-/* Forms (Login/Register) */
+/* Auth Forms */
 .auth-container {
     max-width: 450px;
     margin: 4rem auto;
@@ -250,11 +261,11 @@ nav {
 }
 
 .auth-card {
-    background: var(--secondary-dark);
+    background: var(--secondary-black);
     border-radius: 12px;
     padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    border: 1px solid #333;
+    border: 1px solid #444;
 }
 
 .form-group {
@@ -270,8 +281,8 @@ nav {
 .form-group input {
     width: 100%;
     padding: 0.8rem;
-    background: var(--primary-dark);
-    border: 1px solid #333;
+    background: var(--primary-black);
+    border: 1px solid #444;
     border-radius: 6px;
     color: white;
     font-size: 1rem;
@@ -279,7 +290,7 @@ nav {
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--primary-blue);
+    border-color: var(--primary-green);
 }
 
 .alert {
@@ -300,41 +311,13 @@ nav {
     color: var(--success);
 }
 
-/* Footer */
-footer {
-    background-color: var(--secondary-dark);
-    padding: 3rem 0;
-    margin-top: 4rem;
-    border-top: 1px solid #333;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.footer-section h3 {
-    color: var(--secondary-blue);
-    margin-bottom: 1rem;
-}
-
-.footer-section p, .footer-section a {
-    color: var(--text-gray);
-    text-decoration: none;
-}
-
-.footer-section a:hover {
-    color: var(--accent-blue);
-}
-
 /* Wallet Page */
 .wallet-card {
-    background: var(--secondary-dark);
+    background: var(--secondary-black);
     border-radius: 16px;
     padding: 2rem;
     margin-top: 2rem;
-    border: 1px solid #333;
+    border: 1px solid #444;
     text-align: center;
 }
 
@@ -353,8 +336,8 @@ footer {
 }
 
 .topup-option {
-    background: var(--primary-dark);
-    border: 1px solid #333;
+    background: var(--primary-black);
+    border: 1px solid #444;
     padding: 1.5rem;
     border-radius: 8px;
     cursor: pointer;
@@ -371,16 +354,68 @@ footer {
     font-size: 1.2rem;
 }
 
+/* Filter (jeśli używany) */
+.filter-select {
+    background: var(--secondary-black);
+    color: white;
+    padding: 0.8rem 1rem;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-size: 1rem;
+    min-width: 200px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary-black);
+    padding: 3rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid #444;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--secondary-red);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p, .footer-section a {
+    color: var(--text-gray);
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: var(--primary-green);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
-        display: none;
+        gap: 1rem;
+    }
+    .logo {
+        font-size: 1.5rem;
     }
     .hero h1 {
         font-size: 2.5rem;
     }
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
+/* Animacje dla ruletki (pozostawione) */
 @keyframes spinWheel {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(1440deg); }
